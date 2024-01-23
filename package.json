@@ -1,7 +1,7 @@
 {
-  "name": "node-media-server",
+  "name": "tokei-media-server",
   "version": "2.6.2",
-  "description": "A Node.js implementation of RTMP Server",
+  "description": "A Node.js implementation of RTMP Server forked by Tokei",
   "bin": "bin/app.js",
   "main": "src/node_media_server.js",
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/illuspas/Node-Media-Server.git"
+    "url": "git+https://github.com/tideopl/TokeiMediaServer.git"
   },
   "keywords": [
     "rtmp",
@@ -20,9 +20,8 @@
   "author": "Chen Mingliang",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/illuspas/Node-Media-Server/issues"
+    "url": "https://github.com/tideopl/TokeiMediaServer/issues"
   },
-  "homepage": "https://github.com/illuspas/Node-Media-Server#readme",
   "dependencies": {
     "basic-auth-connect": "^1.0.0",
     "chalk": "^4.1.0",
