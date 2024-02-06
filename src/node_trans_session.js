@@ -68,6 +68,7 @@ class NodeTransSession extends EventEmitter {
     }
     mkdirp.sync(ouPath);
     let argv = ['-i', inPath];
+    let argw = ['-i', inPath];
     // Array.prototype.push.apply(argv, ['-c:v', vc]);
     // Array.prototype.push.apply(argv, this.conf.vcParam);
     // Array.prototype.push.apply(argv, ['-c:a', ac]);
