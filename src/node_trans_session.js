@@ -70,7 +70,7 @@ class NodeTransSession extends EventEmitter {
     // Array.prototype.push.apply(argv, this.conf.vcParam);
     // Array.prototype.push.apply(argv, ['-c:a', ac]);
     // Array.prototype.push.apply(argv, this.conf.acParam);
-    Array.prototype.push.apply(argv, ['-c:v', 'h264', '-preset:v', 'ultrafast', '-c:a', 'aac', '-strict', '-2', '-f', 'hls', '-x264-params', 'keyint=15:min-keyint=15', '-hls_time', '1', '-hls_flags', 'delete_segments', '-hls_list_size', '20', '-http_persistent', '0', '-vf', 'select=\'not(mod(n\,300))\'thumbnail', '-vsync', 'vfr', '-frames:v', '1', inPath + '/hello', mapStr]);
+    Array.prototype.push.apply(argv, ['-c:v', 'h264', '-preset:v', 'ultrafast', '-c:a', 'aac', '-strict', '-2', '-f', 'hls', '-x264-params', 'keyint=15:min-keyint=15', '-hls_time', '1', '-hls_flags', 'delete_segments', '-hls_list_size', '20', '-http_persistent', '0', '-vf', 'select=\'not(mod(n\,300))\'thumbnail', '-vsync', 'vfr', '-frames:v', '1', this.conf.streamPath + '/hello.jpg', mapStr]);
     argv = argv.filter((n) => { return n; }); //去空
     
     this.ffmpeg_exec = spawn(this.conf.ffmpeg, argv);
