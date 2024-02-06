@@ -73,7 +73,7 @@ class NodeTransSession extends EventEmitter {
     // Array.prototype.push.apply(argv, this.conf.vcParam);
     // Array.prototype.push.apply(argv, ['-c:a', ac]);
     // Array.prototype.push.apply(argv, this.conf.acParam);
-    Array.prototype.push.apply(argv, ['-c:v', 'h264', '-preset:v', 'ultrafast', '-c:a', 'aac', '-strict', '-2', '-f', 'hls', '-x264-params', 'keyint=15:min-keyint=15', '-hls_time', '1', '-hls_flags', 'delete_segments', '-hls_list_size', '20', '-http_persistent', '0', '-vf', 'select=\'not(mod(n\,300))\'thumbnail', '-vsync', 'vfr', '-frames:v', '1', this.conf.streamPath + '/hello.jpg', mapStr]);
+    Array.prototype.push.apply(argv, ['-c:v', 'h264', '-preset:v', 'ultrafast', '-c:a', 'aac', '-strict', '-2', '-f', 'hls', '-x264-params', 'keyint=15:min-keyint=15', '-hls_time', '1', '-hls_flags', 'delete_segments', '-hls_list_size', '20', '-http_persistent', '0', mapStr]);
     Array.prototype.push.apply(argw, ['-y', '-vf', 'fps=1/60', '-update', '1', '-vframes', '1', mapThumb])
     argv = argv.filter((n) => { return n; });
     
