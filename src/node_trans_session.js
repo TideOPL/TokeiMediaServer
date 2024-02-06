@@ -33,6 +33,7 @@ class NodeTransSession extends EventEmitter {
     let inPath = 'rtmp://127.0.0.1:' + this.conf.rtmpPort + this.conf.streamPath;
     let ouPath = `${this.conf.mediaroot}/${this.conf.streamApp}/${this.conf.streamName}`;
     let mapStr = '';
+    let mapThumb = '';
 
     if (this.conf.rtmp && this.conf.rtmpApp) {
       if (this.conf.rtmpApp === this.conf.streamApp) {
@@ -54,6 +55,7 @@ class NodeTransSession extends EventEmitter {
       this.conf.hlsFlags = this.getConfig('hlsFlags') || '';
       let hlsFileName = 'index.m3u8';
       let mapHls = `${this.conf.hlsFlags}${ouPath}/${hlsFileName}`;
+      mapThumb = `${this.conf.hlsFlags}${ouPath}/thumb.png`;
       mapStr += mapHls;
       Logger.log('[Transmuxing HLS] ' + this.conf.streamPath + ' to ' + ouPath + '/' + hlsFileName);
     }
@@ -71,9 +73,11 @@ class NodeTransSession extends EventEmitter {
     // Array.prototype.push.apply(argv, ['-c:a', ac]);
     // Array.prototype.push.apply(argv, this.conf.acParam);
     Array.prototype.push.apply(argv, ['-c:v', 'h264', '-preset:v', 'ultrafast', '-c:a', 'aac', '-strict', '-2', '-f', 'hls', '-x264-params', 'keyint=15:min-keyint=15', '-hls_time', '1', '-hls_flags', 'delete_segments', '-hls_list_size', '20', '-http_persistent', '0', '-vf', 'select=\'not(mod(n\,300))\'thumbnail', '-vsync', 'vfr', '-frames:v', '1', this.conf.streamPath + '/hello.jpg', mapStr]);
-    argv = argv.filter((n) => { return n; }); //去空
+    Array.prototype.push.apply(argw, ['-y', '-vf', 'fps=1/60', '-update', '1', '-vframes', '1', mapThumb])
+    argv = argv.filter((n) => { return n; });
     
     this.ffmpeg_exec = spawn(this.conf.ffmpeg, argv);
+    this.ffmpeg_execw = spawn(this.conf.ffmpeg, argw);
     this.ffmpeg_exec.on('error', (e) => {
       Logger.debug(e);
     });
@@ -96,6 +100,7 @@ class NodeTransSession extends EventEmitter {
 
   end() {
     this.ffmpeg_exec.kill();
+    this.ffmpeg_execw.kill();
   }
 
   // delete hls files
